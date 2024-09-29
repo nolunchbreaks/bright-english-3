@@ -1,72 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bright English</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright English Language School</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+        nav li {
+            margin-left: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero section styles */
+        .hero {
+            background-image: url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Courses section styles */
+        .courses {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        .courses h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4a90e2;
+        }
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .course-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        .course-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .course-card-content {
+            padding: 1.5rem;
+        }
+        .course-card h3 {
+            margin-bottom: 0.5rem;
+            color: #4a90e2;
+        }
+
+        /* Contact section styles */
+        .contact {
+            background-color: #4a90e2;
+            color: white;
+            padding: 4rem 0;
+        }
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .contact form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+        }
+        .contact button {
+            background-color: #ffd700;
+            color: #4a90e2;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact button:hover {
+            background-color: #ffea00;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Viewport size display */
+        #viewport-size {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        /* Responsive styles */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Styles for larger tablets and smaller desktops */
+            .course-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav li {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Styles for very small devices */
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-<body class="font-sans">
-  <header class="bg-blue-600 text-white py-4">
-    <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-      <div class="flex items-center mb-4 sm:mb-0">
-        <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center mr-2">
-          <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-          </svg>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                <span>
+                    <h1 class="logo-text">Bright English</h1>
+                </span>
+                    
+                     
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <h1 class="text-2xl font-bold">Bright English</h1>
-      </div>
-      <nav>
-        <ul class="flex flex-wrap justify-center sm:space-x-4">
-          <li class="mx-2 my-1"><a href="/index.html" class="hover:underline">Home</a></li>
-          <li class="mx-2 my-1"><a href="/about.html" class="hover:underline">About</a></li>
-          <li class="mx-2 my-1"><a href="/courses.html" class="hover:underline">Courses</a></li>
-           <li class="mx-2 my-1"><a href="/contact.html" class="hover:underline">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <!-- Home page content -->
-    <section class="py-12 bg-gray-100">
-      <div class="container mx-auto">
-        <div class="grid grid-cols-2 gap-8">
-          <div>
-            <h2 class="text-3xl font-bold mb-4">Bienvenidos a Bright English</h2>
-            <p class="mb-6">
-              Bienvenidos a Bright English!
-Pioneros en la enseñanza del inglés para hispanohablantes
-En Bright English, somos pioneros en enseñar inglés a estudiantes de habla hispana, especialmente a aquellos que han migrado a Canadá o Estados Unidos, así como a cualquier persona que desee comenzar su viaje en el aprendizaje del idioma. Nos diferenciamos por nuestra metodología innovadora y no tradicional, lo que nos permite ofrecer clases que son interactivas, dinámicas y, sobre todo, nunca aburridas.
-Nuestra metodología:
-Utilizamos plataformas interactivas y una mezcla de herramientas de inteligencia artificial para mejorar la experiencia de aprendizaje. Creemos que el inglés no debe ser difícil ni estresante, por eso nuestras clases están diseñadas para ser efectivas y agradables. No asignamos tareas tradicionales; en su lugar, enviamos fragmentos grabados de nuestras clases o ejercicios específicos a través de WhatsApp o Telegram para que practiques en tu tiempo libre.
-Para todas las edades:
-En Bright English, atendemos a estudiantes de todas las edades, desde niños hasta adultos mayores, porque creemos que nunca es tarde para aprender inglés.
-Flexibilidad y precios accesibles:
-Ofrecemos horarios flexibles y precios accesibles, porque creemos que no necesitas gastar una fortuna para aprender inglés. No vendemos falsas promesas; no te diremos que aprenderás inglés en 3 o 6 meses, pero sí garantizamos resultados.
-¡Toma el salto!
-Si estás interesado en aprender inglés con nosotros, deja tu correo electrónico y te contactaremos para que des el primer paso hacia tu dominio del inglés.
-            </p>
-            <p class="mb-6">Our experienced instructor, Sergio Vera, is a native English speaker from Canada who is passionate about helping students achieve their language learning goals.</p>
-            <a href="about.html" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-              Learn More
-            </a>
-          </div>
-          <div>
-            <img src="IMG-20240825-WA0075(1).jpg" alt="Bright English" class="rounded-lg shadow-lg">
-          </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Bright English</h1>
+                <img src="IMG-20240825-WA0075(1).jpg" alt="IMG-20240825-WA0075">
+                <p>Illuminate your future with our expert English language courses</p>
+            </div>
+        </section>
+
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>Our Courses</h2>
+                <div class="course-grid">
+                    <div class="course-card">
+                        <img src="Learn Spanish_ Language Classes And Online Lessons By Berlitz  EF6.jpeg" alt="Beginner English">
+                        <div class="course-card-content">
+                            <h3>Beginner English</h3>
+                            <p>Start your English journey with our comprehensive beginner course.</p>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="https://cmmb.org/wp-content/uploads/2019/07/A-mother-in-Peru-taking-English-class-.jpeg" alt="Business English">
+                        <div class="course-card-content">
+                            <h3>Business English</h3>
+                            <p>Enhance your professional skills with our specialized Business English program.</p>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="https://allesl.com/wp-content/uploads/2021/05/Teaching-English-In-Peru-Feature-700x393.jpg" alt="Learn English from Peru to Canada">
+                        <div class="course-card-content">
+                            <h3>IELTS Preparation</h3>
+                            <p>Learn English from a Native canadian speaker in Peru.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Bright English Language School. All rights reserved.</p>
         </div>
-      </div>
-      
+    </footer>
 
-    </section>
-    
-  </main>
+    <div id="viewport-size"></div>
 
-  <footer class="bg-blue-600 text-white py-6">
-    <div class="container mx-auto text-center">
-      <p>&copy; 2024 Bright English. All rights reserved.</p>
-    </div>
-  </footer>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Basic form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Viewport size display
+        function updateViewportSize() {
+            const vpSize = document.getElementById('viewport-size');
+            vpSize.textContent = `Viewport: ${window.innerWidth}px × ${window.innerHeight}px`;
+        }
+
+        window.addEventListener('resize', updateViewportSize);
+        updateViewportSize(); // Initial call
+    </script>
 </body>
 </html>
